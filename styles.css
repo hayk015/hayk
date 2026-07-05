@@ -659,6 +659,128 @@ a {
   font-weight: 900;
 }
 
+.modules-block {
+  margin-top: 46px;
+}
+
+.modules-block .section-log {
+  margin-bottom: 18px;
+}
+
+.modules-showcase-grid article {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow: hidden;
+}
+
+.modules-showcase-grid article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(236, 72, 153, 0.12), transparent 34%),
+    linear-gradient(315deg, rgba(59, 130, 246, 0.12), transparent 38%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.modules-showcase-grid article::after {
+  content: "";
+  position: absolute;
+  inset: auto 28px 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--blue), var(--pink));
+  opacity: 0.55;
+}
+
+.modules-showcase-grid article:hover::before {
+  opacity: 1;
+}
+
+.module-card-head,
+.module-card-tags,
+.module-status {
+  position: relative;
+  z-index: 1;
+}
+
+.module-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.modules-showcase-grid .module-mark {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  background: rgba(8, 8, 13, 0.58);
+}
+
+.module-code {
+  color: var(--pink);
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+.modules-showcase-grid h3 {
+  position: relative;
+  z-index: 1;
+  margin: 12px 0 0;
+}
+
+.modules-showcase-grid p {
+  position: relative;
+  z-index: 1;
+}
+
+.module-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.module-card-tags span {
+  padding: 5px 9px;
+  border: 1px solid rgba(229, 231, 235, 0.14);
+  background: rgba(5, 5, 7, 0.34);
+  color: var(--secondary);
+  font-family: "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.module-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.module-status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--pink);
+  background: var(--pink);
+  box-shadow: 0 0 14px rgba(236, 72, 153, 0.8);
+  animation: pulse 1.2s infinite;
+}
+
 .team-list {
   margin-top: 28px;
 }
