@@ -85,6 +85,63 @@ document
     });
   });
 
+if (menuPanel && !menuPanel.querySelector(".menu-links a.is-current")) {
+  const fallbackTarget = "index.html";
+
+  menuPanel
+    .querySelectorAll(".menu-links a, .menu-pagination button")
+    .forEach((item) => {
+      item.classList.toggle(
+        "is-current",
+        (item.getAttribute("href") || item.dataset.target) === fallbackTarget,
+      );
+    });
+}
+
+const menuPreviewItems = [
+  ...document.querySelectorAll(".menu-pagination button, .menu-links a"),
+];
+
+function getMenuTarget(item) {
+  return item.getAttribute("href") || item.dataset.target;
+}
+
+function setMenuPreview(target) {
+  if (!menuPanel || !target) return;
+
+  menuPanel.classList.add("has-preview");
+
+  menuPreviewItems.forEach((item) => {
+    item.classList.toggle("is-preview", getMenuTarget(item) === target);
+  });
+}
+
+function clearMenuPreview() {
+  if (!menuPanel) return;
+
+  menuPanel.classList.remove("has-preview");
+  menuPreviewItems.forEach((item) => item.classList.remove("is-preview"));
+}
+
+if (menuPanel && menuPreviewItems.length) {
+  menuPreviewItems.forEach((item) => {
+    const target = getMenuTarget(item);
+
+    item.addEventListener("pointerenter", () => setMenuPreview(target));
+    item.addEventListener("mouseover", () => setMenuPreview(target));
+    item.addEventListener("mouseenter", () => setMenuPreview(target));
+    item.addEventListener("focus", () => setMenuPreview(target));
+  });
+
+  menuPanel.addEventListener("pointerleave", clearMenuPreview);
+  menuPanel.addEventListener("mouseleave", clearMenuPreview);
+  menuPanel.addEventListener("focusout", (event) => {
+    if (!menuPanel.contains(event.relatedTarget)) {
+      clearMenuPreview();
+    }
+  });
+}
+
 const revealObserver =
   "IntersectionObserver" in window
     ? new IntersectionObserver(
